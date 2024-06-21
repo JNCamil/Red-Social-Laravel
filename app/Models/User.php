@@ -42,4 +42,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    //Sacar las imágenes de un usuaro en concreto
+    public function images(){
+        return $this->hasMany('App\Image'); //Me va a traer un array de comentarios de id images
+
+    }
+
 }
