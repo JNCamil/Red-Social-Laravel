@@ -21,25 +21,32 @@ Route::get('/', function () {
 
     $images = Image::all(); //Saco todas las imágenes
     //Es decir no tenemos que hacer un query builder
-    foreach($images as $image){
-        echo $image->image_path. "<br>";
-        echo $image->description. "<br>";
+    foreach ($images as $image) {
+        echo $image->image_path . "<br>";
+        echo $image->description . "<br>";
 
         //Para sacar el usuario que ha creado esa imagen:
         //var_dump( $image->user);
-        echo $image->user->name. " " . $image->user->surname . "<br>";
+        echo $image->user->name . " " . $image->user->surname . "<br>";
 
         echo "<h4>Comentarios</h4>";
 
-
-        //Para mostrar los comentarios asociados
-        foreach($image->comments as $comment ){
-
-            echo $comment->content. "<br>";
+        if (count($image->comments) >= 1) {
 
 
+            //Para mostrar los comentarios asociados
+            foreach ($image->comments as $comment) {
 
+                //Quién ha comentado:
+
+                echo $comment->user->name . " " . $comment->user->surname . ":";
+
+                echo $comment->content . "<br>";
+            }
         }
+
+
+        echo "LIKES: ". COUNT($image->likes). "<br>";
 
 
 
@@ -48,7 +55,7 @@ Route::get('/', function () {
 
 
     }
-die();
+    die();
 
 
     return view('welcome');
