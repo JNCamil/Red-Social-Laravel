@@ -16,14 +16,18 @@ class Comment extends Model
 
     public function user(){
         //BelongsTo: Pertenece a: segundo parámetro para relacionar
-        return $this->belongsTo('App\User', 'user_id'); //Vamos a sacar el objeto usuario que ha creado esa imagen
+       // return $this->belongsTo('App\User', 'user_id'); //Vamos a sacar el objeto usuario que ha creado esa imagen
+        return $this->belongsTo(User::class, 'user_id'); //Vamos a sacar el objeto usuario que ha creado esa imagen
+
     }
 
     //Relación de muchos a uno 
 
     public function image(){
         //BelongsTo: Pertenece a: segundo parámetro para relacionar
-        return $this->belongsTo('App\Image', 'image_id'); //Vamos a sacar el objeto usuario que ha creado esa imagen
+       // return $this->belongsTo('App\Image', 'image_id'); //Vamos a sacar el objeto usuario que ha creado esa imagen
+        return $this->belongsTo(Image::class, 'image_id'); //Vamos a sacar el objeto usuario que ha creado esa imagen
+
     }
         
 }

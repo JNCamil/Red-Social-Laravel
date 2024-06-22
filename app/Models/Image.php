@@ -16,14 +16,14 @@ class Image extends Model
     //Relación Ont to Many / de uno a muchos
 
     public function comments(){
-        return $this->hasMany('App\Comment'); //Me va a traer un array de comentarios de id images
+        return $this->hasMany('App\Models\Comment'); //Me va a traer un array de comentarios de id images
 
     }
 
     //Relación Ont to Many / de uno a muchos
 
     public function likes(){
-        return $this->hasMany('App\Like'); //Me va a traer un array de likes de id images
+        return $this->hasMany('App\Models\Like'); //Me va a traer un array de likes de id images
 
 
     }
@@ -32,7 +32,10 @@ class Image extends Model
 
     public function user(){
         //BelongsTo: Pertenece a: segundo parámetro para relacionar
-        return $this->belongsTo('App\User', 'user_id'); //Vamos a sacar el objeto usuario que ha creado esa imagen
+        //return $this->belongsTo('App\User', 'user_id'); //Vamos a sacar el objeto usuario que ha creado esa imagen
+        /*Ahora las relaciones se definen así: */
+        return $this->belongsTo(User::class, 'user_id'); //Vamos a sacar el objeto usuario que ha creado esa imagen
+
     }
 
 
