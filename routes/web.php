@@ -14,11 +14,13 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-//PARA INSTANCIAR EL OBJECTO:
+//PARA INSTANCIAR EL OBJECTO: use App\Models\Image;
 
 // use App\Models\Image;
 
 Route::get('/', function () {
+
+    return view('welcome');
 
     // $images = Image::all(); //Saco todas las imágenes
     // //Es decir no tenemos que hacer un query builder
@@ -57,11 +59,12 @@ Route::get('/', function () {
 
     // }
     // die();
-
-
-    return view('welcome');
+    
 });
-
+//Lo genera el php artisan make:auth y la ruta del controlador para el login y registro de usuarios
 Auth::routes();
 
+//Nombre ruta, controlador, función ->nombre
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/configuracion', [App\Http\Controllers\userController::class, 'config'])->name('config');
+Route::post('/user/update', [App\Http\Controllers\userController::class, 'update'])->name('user.update');
