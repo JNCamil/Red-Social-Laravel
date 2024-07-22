@@ -12,10 +12,13 @@ class userController extends Controller
     }
 
     public function update(Request $request){//Recibe un objeto request del form
-        
-        //Validación
-        $id = \Auth::user()->id; //Colocando la barra no da fallo y no hace falta invocar arriba la clase
+        //Conseguir usuario identificado, si no hubiera, habría que hacer un find a la bbdd
+        $user =\Auth::user();
 
+        // $id = \Auth::user()->id; //Colocando la barra no da fallo y no hace falta invocar arriba la clase
+        $id = $user->id; //Colocando la barra no da fallo y no hace falta invocar arriba la clase
+
+        //Validación del formulario
         $validate = $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
@@ -23,13 +26,24 @@ class userController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')->ignore($id, 'id')],//lo mismo que el anterior
         ]);
 
-       // $id = \Auth::user()->id; //Colocando la barra no da fallo y no hace falta invocar arriba la clase
+        //Recoger los datos del formulario
         $name = $request->input('name');
         $surname = $request->input('surname');
         $nick = $request->input('nick');
         $email = $request->input('email');
         //var_dump($id); die();
 
+        //Setear/Asignar los valores al objeto usuario
+        $user->name = $name;
+        $user->surname = $surname;
+        $user->nick = $nick;
+        $user->email = $email;
+
+        //Ejecutar consulta y cambio en la bbdd
+        $user->update();
+
+        return redirect()->route('config')
+                         ->with(['message'=>'Usuario actualizado correctamente']);
         
 
 
