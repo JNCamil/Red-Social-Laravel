@@ -27,7 +27,8 @@ return [
     | Supported Drivers: "local", "ftp", "sftp", "s3"
     |
     */
-
+//***********PUEDO CREAR DIFERENTES DISCOS PARA GUARDAR DATOS, 
+//Creando discos para cada cosa aumentamos la seguridad */
     'disks' => [
 
         'local' => [
@@ -36,6 +37,7 @@ return [
             'throw' => false,
         ],
 
+        //ESTE ES EL DISCO QUE VIENE POR DEFECTO
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
@@ -43,6 +45,23 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        //CREAMOS UN DISCO PARA IMÁGENES de los USUARIOS QUE SUBAMOS
+        'users' => [
+            'driver' => 'local',
+            'root' => storage_path('app/users'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        //CREAMOS TAMBIÉN OTRO DISCO PARA LAS IMÁGENES QUE NOSOTROS SUBIMOS, LAS DE LA PLATAFORMA
+        'images' => [
+            'driver' => 'local',
+            'root' => storage_path('app/images'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        
 
         's3' => [
             'driver' => 's3',
