@@ -78,12 +78,14 @@
                                 @enderror
                             </div>
                         </div>
+                        
                         <!-- Para subir imágenes de una forma segura, tengo que configurar el storage, config -> filesystems, MÁS DOCS ALLÍ-->
                         <div class="row mb-3">
+                          
                             <label for="image_path" class="col-md-4 col-form-label text-md-end">{{ __('Avatar') }}</label>
 
                             <div class="col-md-6">
-                                <input id="image_path" type="file" class="form-control @error('image_path') is-invalid @enderror" name="image_path"  required >
+                                <input id="image_path" type="file" class="form-control @error('image_path') is-invalid @enderror" name="image_path"  >
 
                                 @error('image_path')
                                     <span class="invalid-feedback" role="alert">
@@ -91,6 +93,14 @@
                                     </span>
                                 @enderror
                             </div>
+                              <!--Comprobar que el usuario tiene una imagen-->
+                              @if(Auth::user()->image)
+
+                              <img src="{{  route('user.avatar', ['filename'=>Auth::user()->image])}}" alt="" class="avatar">
+                              <!-- Con URL: -->
+                              <!--<img src="{{  url('/user/avatar/'.Auth::user()->image)}}" alt="">-->
+      
+                              @endif
                         </div>
 
                         

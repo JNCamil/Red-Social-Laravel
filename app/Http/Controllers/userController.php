@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
@@ -69,5 +70,10 @@ class userController extends Controller
         
 
 
+    }
+
+    public function getImage($filename){ //Recuperar la foto por url, la que llega por la ruta en routes web.php
+        $file = Storage::disk('users')->get($filename);
+        return new Response($file, 200);
     }
 }

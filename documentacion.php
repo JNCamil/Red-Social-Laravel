@@ -32,7 +32,27 @@ Laravel ya cuenta con una autenticación de usuarios, básico con métodos y vis
 Para hacerlo ejecutamos el comando: php artisan make:auth
 Generará un controlador, métodos, vistas, rutas necesarias, 
 me generará en route web.php Auth::route que son rutas especiales y generará un controlador
+----------------------------------------------------------------------------
+VITE
+Para importar estilos propios con esta directiva, se carga esto en app de layout:
+   <!-- Scripts -->
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+Esto lo que hace es ejecutar los import de app.scss
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
 
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+// Importa tu CSS adicional
+@import '../css/style';  
+
+Si quiero estilos propios tengo que meter la última línea y ejecutar 
+npm run dev -> para comprobar cambios y 
+npm run build -> para ponerlos ya
 
 */
 
