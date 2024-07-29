@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\File;
 
 class userController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        /*Si aplico un middleware auth, bloquearé el acceso al resto 
+        de métodos que yo tenga
+        Para verlo, vamos a kernel -> middlewareAliases -> auth, 
+        con esto los métodos serán privados*/
+    }
     //
     public function config(){
         return view('user.config');
